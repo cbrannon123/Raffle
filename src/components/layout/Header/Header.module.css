@@ -1,0 +1,32 @@
+.header {
+    background-color: grey;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+span {
+    height: 80px;
+    width: 80px;
+    background-color: white;
+
+}
+
+.logo {
+    display: flex;
+    justify-content: space-around;
+}
+
+.linksContainer {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.linksContainer > li {
+    padding: 10px;
+}
+
