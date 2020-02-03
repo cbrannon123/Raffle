@@ -1,4 +1,4 @@
-import Ract, { Component } from 'react';
+import React, { Component } from 'react';
 
 
 class ItemDisplay extends Component {
@@ -13,3 +13,5 @@ class ItemDisplay extends Component {
         )
     }
 };
+
+export default ItemDisplay;
