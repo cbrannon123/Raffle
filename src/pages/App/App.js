@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Link, Switch, Route } from 'react-router-dom';
 import styles from './App.module.css'
-import { SignupForm } from '../../components/SignupForm/SignupForm';
-import { LoginForm } from '../../components/LoginForm/LoginForm';
 import { Index } from '../../components/Index/Index';
+import {LoginModal} from '../../components/LoginModal/LoginModal';
+import {SignupModal} from '../../components/SignupModal/SignupModal';
+
 
 export const App = () => (
   <div className="App">
@@ -15,10 +16,10 @@ export const App = () => (
         </div>
         <div>
           <ul className={styles.linksContainer}>
-            <li><Link to={'/login'}>Log In</Link></li>
-            <li><Link to={'/signup'}>Sign Up</Link></li>
-            <li><Link href="#">How It Works</Link></li>
-            <li><Link href="#">Contact</Link></li>
+            <li><Link to={"/"}>How It Works</Link></li>
+            <li><Link to={"/"}>Contact</Link></li>
+            <li><SignupModal /></li>
+            <li><LoginModal /></li>
           </ul>
         </div>
       </nav>
@@ -26,8 +27,6 @@ export const App = () => (
     <Switch>
       {/* <Route exact path='home' component={} /> */}
       <Route exact path='/' component={ Index } />
-      <Route exact path='/signup' component={ SignupForm } />
-      <Route exact path='/login' component={ LoginForm } />
     </Switch>
 
   </div>

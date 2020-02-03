@@ -30,15 +30,28 @@ span {
     padding-left: 15px;
 }
 
+.companyName:hover {
+    text-decoration: none;
+    color: red;
+}
+
 .linksContainer {
     list-style-type: none;
     display: flex;
     margin-top: 1vmin;
     justify-content: space-evenly;
+    align-items: center;
+    margin-top: -25px;
 }
 
 .linksContainer > li * {
     padding: 10px;
     text-decoration: none;
     color: black;
+    font-size: 20px;
+}
+
+.linksContainer > li *:hover {
+    text-decoration: none;
+    color: red;
 }
