@@ -1,0 +1,7 @@
+.imageContainer {
+    margin: 20px;
+    height: 200px;
+    width: 300px;
+    background-color: grey;
+    border: 3px dotted black;
+}

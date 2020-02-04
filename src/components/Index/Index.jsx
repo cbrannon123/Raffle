@@ -1,8 +1,13 @@
 import React from 'react';
+import ItemDisplay from '../ItemDisplay/ItemDisplay';
+import styles from './Index.module.css';
 
 export const Index = () => {
-    return (
-        <p>Index</p>
-    )
+  return (
+    <div className={styles.indexContainer}>
+      <ItemDisplay />
+      <ItemDisplay />
+      <ItemDisplay />
+    </div>
+  );
 };
-
