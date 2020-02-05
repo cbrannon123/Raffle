@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './ItemDisplay.module.css';
-import ImageDisplay from '../ItemDisplay/ItemImage/ItemImage';
+import ItemImage from './ItemImage/ItemImage';
+import ItemInfo from '../ItemDisplay/ItemInfo/ItemInfo';
 
 class ItemDisplay extends Component {
   constructor(props) {
@@ -10,7 +11,9 @@ class ItemDisplay extends Component {
   render() {
     return (
       <div className={styles.displayContainer}>
-        <ImageDisplay />
+        <ItemImage />
+        <ItemInfo />
+        <button>View</button>
       </div>
     );
   }

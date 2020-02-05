@@ -1,8 +1,9 @@
 .displayContainer {
-    display: flex;
-    justify-content: center;
-    border: 1px solid black;
-    height: 400px;
-    width: 300px;
-    margin: 20px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  border: 1px solid black;
+  height: 500px;
+  width: 300px;
+  margin-top: 70px;
 }

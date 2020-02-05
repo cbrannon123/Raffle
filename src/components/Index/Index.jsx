@@ -8,6 +8,9 @@ export const Index = () => {
       <ItemDisplay />
       <ItemDisplay />
       <ItemDisplay />
+      <ItemDisplay />
+      <ItemDisplay />
+      <ItemDisplay />
     </div>
   );
 };
