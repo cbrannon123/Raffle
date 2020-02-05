@@ -1,3 +1,6 @@
 {
-    "material-icon-theme.folders.theme": "classic"
+  "material-icon-theme.folders.theme": "classic",
+  "prettier.useTabs": false,
+  "prettier.trailingComma": "all",
+  "javascript.format.semicolons": "insert"
 }

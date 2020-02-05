@@ -1,9 +1,17 @@
 .displayContainer {
   display: flex;
-  flex-flow: column nowrap;
   justify-content: center;
+  flex-flow: column nowrap;
   border: 1px solid black;
   height: 500px;
   width: 300px;
   margin-top: 70px;
+}
+
+.showButton {
+  margin: auto;
+  margin-bottom: 30px;
+  border: 1px solid black;
+  width: 200px;
+  height: 50px;
 }

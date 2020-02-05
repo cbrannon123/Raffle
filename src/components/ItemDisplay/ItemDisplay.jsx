@@ -13,7 +13,7 @@ class ItemDisplay extends Component {
       <div className={styles.displayContainer}>
         <ItemImage />
         <ItemInfo />
-        <button>View</button>
+        <button className={styles.showButton}>View</button>
       </div>
     );
   }
