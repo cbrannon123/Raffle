@@ -1,57 +1,62 @@
 .header {
-    border-bottom: solid black 1px;
-    padding: 20px;
-    
+  border-bottom: solid black 1px;
+  padding: 20px;
+  padding-left: 70px;
+  padding-right: 70px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: lightgray;
+  height: 100px;
 }
 
 .nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
 }
 
 span {
-    height: 80px;
-    width: 80px;
-    background-color: grey;
-
+  height: 60px;
+  width: 60px;
+  background-color: grey;
 }
 
 .logo {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
 .companyName {
-    color: black;
-    text-decoration: none;
-    padding-top: 20px;
-    font-size: 40px;
-    padding-left: 15px;
+  color: black;
+  text-decoration: none;
+  padding-top: 10px;
+  font-size: 40px;
+  padding-left: 15px;
 }
 
 .companyName:hover {
-    text-decoration: none;
-    color: red;
+  text-decoration: none;
+  color: red;
 }
 
 .linksContainer {
-    list-style-type: none;
-    display: flex;
-    margin-top: 1vmin;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-top: -25px;
+  list-style-type: none;
+  display: flex;
+  margin-top: 1vmin;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: -25px;
 }
 
 .linksContainer > li * {
-    padding: 10px;
-    text-decoration: none;
-    color: black;
-    font-size: 20px;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
 }
 
 .linksContainer > li *:hover {
-    text-decoration: none;
-    color: red;
+  text-decoration: none;
+  color: red;
 }

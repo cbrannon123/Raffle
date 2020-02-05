@@ -10,20 +10,20 @@ class ItemInfo extends Component {
     return (
       <div className={styles.itemInfoContainer}>
         <div className={styles.itemName}>
-          <h2>Product Title</h2>
+          <h2>{this.props.title}</h2>
         </div>
         <div className={styles.dataContainer}>
           <div className={styles.data}>
             <h5>Per Ticket</h5>
-            <p>$12.00</p>
+            <p>{this.props.price}</p>
           </div>
           <div className={styles.data}>
             <h5>Tickets</h5>
-            <p>$12</p>
+            <p>{this.props.available}</p>
           </div>
           <div className={styles.data}>
             <h5>Ends</h5>
-            <p>12hrs</p>
+            <p>{this.props.time}</p>
           </div>
         </div>
       </div>

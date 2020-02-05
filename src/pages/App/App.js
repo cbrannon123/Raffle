@@ -1,3 +1,8 @@
+// <Container>
+//   <Navbar expand="lg" variant="light" bg="light">
+//     <Navbar.Brand href="#">Navbar</Navbar.Brand>
+//   </Navbar>
+// </Container>
 import React, { Component } from 'react';
 import { Link, Switch, Route } from 'react-router-dom';
 import styles from './App.module.css';
