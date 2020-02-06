@@ -9,6 +9,7 @@ import styles from './App.module.css';
 import { Index } from '../Index/Index';
 import { LoginModal } from '../../components/LoginModal/LoginModal';
 import { SignupModal } from '../../components/SignupModal/SignupModal';
+import Create from '../../components/CreateItem/CreateItem';
 import Show from '../Show/Show'
 
 export const App = () => (
@@ -27,7 +28,7 @@ export const App = () => (
               <Link to={'/'}>How It Works</Link>
             </li>
             <li>
-              <Link to={'/'}>Contact</Link>
+              <Link to={'/create'}>Create</Link>
             </li>
             <li>
               <SignupModal />
@@ -42,6 +43,7 @@ export const App = () => (
     <Switch>
       <Route exact path="/" component={Index} />
       <Route exact path="/show" component={Show} />
+      <Route exact path="/create" component={Create} />
     </Switch>
   </div>
 );

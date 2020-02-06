@@ -5,7 +5,9 @@ import styles from './Index.module.css';
 export class Index extends Component {
   constructor(props) {
     super(props);
-   
+    this.state = {
+      items: []
+   }
   }
 
   render() {
