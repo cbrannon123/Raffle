@@ -6,9 +6,10 @@
 import React, { Component } from 'react';
 import { Link, Switch, Route } from 'react-router-dom';
 import styles from './App.module.css';
-import { Index } from '../../components/Index/Index';
+import { Index } from '../Index/Index';
 import { LoginModal } from '../../components/LoginModal/LoginModal';
 import { SignupModal } from '../../components/SignupModal/SignupModal';
+import Show from '../Show/Show'
 
 export const App = () => (
   <div className="App">
@@ -40,6 +41,7 @@ export const App = () => (
     </header>
     <Switch>
       <Route exact path="/" component={Index} />
+      <Route exact path="/show" component={Show} />
     </Switch>
   </div>
 );

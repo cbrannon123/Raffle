@@ -1,7 +1,11 @@
 .imageContainer {
-  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+img {
   margin-top: 20px;
-  height: 275px;
+  height: 250px;
   width: 250px;
   background-color: lightgrey;
   border: 2px dotted black;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ItemDisplay from '../ItemDisplay/ItemDisplay';
+import ItemDisplay from '../../components/ItemDisplay/ItemDisplay';
 import styles from './Index.module.css';
 
 export class Index extends Component {
@@ -11,6 +11,9 @@ export class Index extends Component {
   render() {
     return (
       <div className={styles.indexContainer}>
+        <ItemDisplay />
+        <ItemDisplay />
+        <ItemDisplay />
         <ItemDisplay />
         <ItemDisplay />
         <ItemDisplay />
