@@ -4,22 +4,13 @@ import styles from './CreateItem.module.css';
 class CreateItem extends Component {
   constructor(props) {
     super(props);
+    this.handlSubmit = this.handlSubmit.bind(this)
     this.state = {
       title: '',
       price: '',
       available: '',
       body: '',
-      img: {
-        file: null,
-        src: '',
-      },
-      time: {
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-      },
-    };
+    }
   }
 
   handleTitle = e => {
@@ -40,12 +31,33 @@ class CreateItem extends Component {
     });
   };
 
+  handleBody = e => {
+    this.setState({
+      body: e.target.value,
+    });
+  };
+
+  handlSubmit = e => {
+    e.preventDefault();
+    this.props.addItem(this.state.title, this.state.price, this.state.available, this.state.body)
+
+
+    this.setState({
+      title: '',
+      price: '',
+      available: '',
+      body: '',
+    });
+
+    //sets to empty after the above
+  };
+
   render() {
     return (
       <div
         style={{
           width: '50vh',
-          marginTop: '100px',
+          marginTop: '10px',
           display: 'flex',
           justifyContent: 'center',
         }}
@@ -96,6 +108,7 @@ class CreateItem extends Component {
               onChange={this.handleBody}
             />
             <br />
+            <input type="submit" value="submit item" />
           </form>
           <br />
           <label>Upload img</label>
