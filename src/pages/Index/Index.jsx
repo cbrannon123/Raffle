@@ -17,14 +17,14 @@ export class Index extends Component {
           body: 'this is the body',
         },
         {
-          id: '1',
+          id: '2',
           title: 'hello',
           price: '7',
           available: '10',
           body: 'this is the body',
         },
         {
-          id: '1',
+          id: '3',
           title: 'hello',
           price: '7',
           available: '10',

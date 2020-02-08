@@ -4,13 +4,13 @@ import styles from './CreateItem.module.css';
 class CreateItem extends Component {
   constructor(props) {
     super(props);
-    this.handlSubmit = this.handlSubmit.bind(this)
+    this.handlSubmit = this.handlSubmit.bind(this);
     this.state = {
       title: '',
       price: '',
       available: '',
       body: '',
-    }
+    };
   }
 
   handleTitle = e => {
@@ -39,8 +39,12 @@ class CreateItem extends Component {
 
   handlSubmit = e => {
     e.preventDefault();
-    this.props.addItem(this.state.title, this.state.price, this.state.available, this.state.body)
-
+    this.props.addItem(
+      this.state.title,
+      this.state.price,
+      this.state.available,
+      this.state.body,
+    );
 
     this.setState({
       title: '',
@@ -48,8 +52,6 @@ class CreateItem extends Component {
       available: '',
       body: '',
     });
-
-    //sets to empty after the above
   };
 
   render() {
