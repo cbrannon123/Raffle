@@ -4,7 +4,6 @@ import styles from './App.module.css';
 import { Index } from '../Index/Index';
 import { LoginModal } from '../../components/LoginModal/LoginModal';
 import { SignupModal } from '../../components/SignupModal/SignupModal';
-import Create from '../../components/CreateItem/CreateItem';
 import Show from '../Show/Show';
 
 export class App extends Component {

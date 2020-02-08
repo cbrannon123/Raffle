@@ -4,7 +4,7 @@ import styles from './CreateItem.module.css';
 class CreateItem extends Component {
   constructor(props) {
     super(props);
-    this.handlSubmit = this.handlSubmit.bind(this);
+    //this.handlSubmit = this.handlSubmit.bind(this);
     this.state = {
       title: '',
       price: '',

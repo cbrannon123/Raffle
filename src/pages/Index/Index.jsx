@@ -2,34 +2,41 @@ import React, { Component } from 'react';
 import ItemDisplay from '../../components/ItemDisplay/ItemDisplay';
 import styles from './Index.module.css';
 import CreateItem from '../../components/CreateItem/CreateItem';
+import firebase from '../../config/firebase';
 
 export class Index extends Component {
   constructor(props) {
     super(props);
     this.addItem = this.addItem.bind(this);
+
+    this.db = firebase
+      .database()
+      .ref()
+      .child('items');
+
     this.state = {
       items: [
-        {
-          id: '1',
-          title: 'hello',
-          price: '7',
-          available: '10',
-          body: 'this is the body',
-        },
-        {
-          id: '2',
-          title: 'hello',
-          price: '7',
-          available: '10',
-          body: 'this is the body',
-        },
-        {
-          id: '3',
-          title: 'hello',
-          price: '7',
-          available: '10',
-          body: 'this is the body',
-        },
+        // {
+        //   id: '1',
+        //   title: 'hello',
+        //   price: '7',
+        //   available: '10',
+        //   body: 'this is the body',
+        // },
+        // {
+        //   id: '2',
+        //   title: 'hello',
+        //   price: '7',
+        //   available: '10',
+        //   body: 'this is the body',
+        // },
+        // {
+        //   id: '3',
+        //   title: 'hello',
+        //   price: '7',
+        //   available: '10',
+        //   body: 'this is the body',
+        // },
       ],
     };
   }
@@ -49,7 +56,7 @@ export class Index extends Component {
   }
 
   render() {
-    const isAdmin = true
+    const isAdmin = true;
     const items = this.state.items.map(item => {
       return (
         <ItemDisplay
@@ -66,14 +73,12 @@ export class Index extends Component {
       <div className={styles.indexContainer}>
         {isAdmin ? (
           <>
-          <CreateItem addItem={this.addItem} />
+            <CreateItem addItem={this.addItem} />
             {items}
-            </>
+          </>
         ) : (
-          <>
-              {items}
-              </>
-          )}
+          <>{items}</>
+        )}
       </div>
     );
   }
