@@ -2,17 +2,22 @@ import React, { Component } from 'react';
 import ItemDisplay from '../../components/ItemDisplay/ItemDisplay';
 import styles from './Index.module.css';
 import CreateItem from '../../components/CreateItem/CreateItem';
-import firebase from '../../config/firebase';
+import { DB_CONFIG } from '../../config/firebase';
+import firebase from 'firebase';
+import 'firebase/firestore';
 
 export class Index extends Component {
   constructor(props) {
     super(props);
     this.addItem = this.addItem.bind(this);
 
-    this.db = firebase
+    this.app = firebase.initializeApp(DB_CONFIG);
+
+    this.db = this.app
       .database()
       .ref()
       .child('items');
+    console.log(this.db);
 
     this.state = {
       items: [
