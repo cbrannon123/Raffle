@@ -11,57 +11,37 @@ export class Index extends Component {
     this.addItem = this.addItem.bind(this);
 
     this.state = {
-      items: [
-        // {
-        //   id: '1',
-        //   title: 'hello',
-        //   price: '7',
-        //   available: '10',
-        //   body: 'this is the body',
-        // },
-        // {
-        //   id: '2',
-        //   title: 'hello',
-        //   price: '7',
-        //   available: '10',
-        //   body: 'this is the body',
-        // },
-        // {
-        //   id: '3',
-        //   title: 'hello',
-        //   price: '7',
-        //   available: '10',
-        //   body: 'this is the body',
-        // },
-      ],
-      dbRef: null
+      items: [],
+      dbRef: null,
     };
   }
 
   componentDidMount() {
-    this.setState({
-      dbRef: 'items/'
-    }, this.showItems)
-    
+    this.setState(
+      {
+        dbRef: 'items/',
+      },
+      this.showItems,
+    );
   }
   showItems = () => {
-    database.ref(this.state.dbRef)
+    database
+      .ref(this.state.dbRef)
       .orderByChild('child_added')
       .on('value', snapshot => {
-        const newArray = []
+        const newArray = [];
         snapshot.forEach(childSnapShot => {
           newArray.push({
             id: childSnapShot.key,
-            ...childSnapShot.val()
-          })
-        })
-        this.setState({ items: newArray })
-    })
-  }
-
+            ...childSnapShot.val(),
+          });
+        });
+        this.setState({ items: newArray });
+      });
+  };
 
   addItem(title, price, avail, body) {
-    const { dbRef } = this.state
+    const { dbRef } = this.state;
     createItem(dbRef, {
       title: title,
       price: price,
