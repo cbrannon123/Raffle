@@ -6,6 +6,7 @@ class CreateItem extends Component {
     super(props);
     //this.handlSubmit = this.handlSubmit.bind(this);
     this.state = {
+      id: '',
       title: '',
       price: '',
       available: '',
@@ -44,9 +45,11 @@ class CreateItem extends Component {
       this.state.price,
       this.state.available,
       this.state.body,
+      this.state.id
     );
 
     this.setState({
+      id: '',
       title: '',
       price: '',
       available: '',

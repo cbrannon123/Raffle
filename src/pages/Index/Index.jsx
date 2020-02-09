@@ -1,23 +1,14 @@
 import React, { Component } from 'react';
 import ItemDisplay from '../../components/ItemDisplay/ItemDisplay';
-import styles from './Index.module.css';
 import CreateItem from '../../components/CreateItem/CreateItem';
-import { DB_CONFIG } from '../../config/firebase';
-import firebase from 'firebase';
-import 'firebase/firestore';
+import styles from './Index.module.css';
+
+import { database, createItem } from '../../config/firebase';
 
 export class Index extends Component {
   constructor(props) {
     super(props);
     this.addItem = this.addItem.bind(this);
-
-    this.app = firebase.initializeApp(DB_CONFIG);
-
-    this.db = this.app
-      .database()
-      .ref()
-      .child('items');
-    console.log(this.db);
 
     this.state = {
       items: [
@@ -43,20 +34,39 @@ export class Index extends Component {
         //   body: 'this is the body',
         // },
       ],
+      dbRef: null
     };
   }
 
+  componentDidMount() {
+    this.setState({
+      dbRef: 'items/'
+    }, this.showItems)
+    
+  }
+  showItems = () => {
+    database.ref(this.state.dbRef)
+      .orderByChild('child_added')
+      .on('value', snapshot => {
+        const newArray = []
+        snapshot.forEach(childSnapShot => {
+          newArray.push({
+            id: childSnapShot.key,
+            ...childSnapShot.val()
+          })
+        })
+        this.setState({ items: newArray })
+    })
+  }
+
+
   addItem(title, price, avail, body) {
-    const prevItem = this.state.items;
-    prevItem.push({
-      id: prevItem.length + 1,
+    const { dbRef } = this.state
+    createItem(dbRef, {
       title: title,
       price: price,
       available: avail,
       body: body,
-    });
-    this.setState({
-      items: prevItem,
     });
   }
 
