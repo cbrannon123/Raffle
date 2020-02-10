@@ -11,6 +11,7 @@ class CreateItem extends Component {
       price: '',
       available: '',
       body: '',
+      time: ''
     };
   }
 
@@ -45,7 +46,8 @@ class CreateItem extends Component {
       this.state.price,
       this.state.available,
       this.state.body,
-      this.state.id
+      this.state.id,
+      this.state.time
     );
 
     this.setState({
@@ -54,6 +56,7 @@ class CreateItem extends Component {
       price: '',
       available: '',
       body: '',
+      time: '',
     });
   };
 

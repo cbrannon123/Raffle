@@ -22,4 +22,8 @@ function createItem(ref, item) {
   return database.ref(ref).push(item);
 }
 
-export { database, createItem };
+function removeItem(ref, id) {
+  return database.ref(`${ref}/${id}`).remove();
+}
+
+export { database, createItem, removeItem };
