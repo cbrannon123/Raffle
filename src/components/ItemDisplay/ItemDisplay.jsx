@@ -4,6 +4,7 @@ import Show from '../../pages/Show/Show';
 import styles from './ItemDisplay.module.css';
 import ItemImage from './ItemImage/ItemImage';
 import ItemInfo from '../ItemDisplay/ItemInfo/ItemInfo';
+import { getItem } from '../../config/firebase';
 
 const ItemDisplay = props => (
   <div className={styles.displayContainer}>
@@ -15,9 +16,7 @@ const ItemDisplay = props => (
       available={props.avail}
       time={props.time}
     />
-    <button className={styles.showButton}>
-      <Link to={'/show'}>View</Link>
-    </button>
+    <button onClick={() => props.handleShow(props.id)} className={styles.showButton}>View</button>
   </div>
 );
 

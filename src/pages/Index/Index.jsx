@@ -3,7 +3,7 @@ import ItemDisplay from '../../components/ItemDisplay/ItemDisplay';
 import CreateItem from '../../components/CreateItem/CreateItem';
 import styles from './Index.module.css';
 
-import { database, createItem, removeItem } from '../../config/firebase';
+import { database, createItem, removeItem, getItem } from '../../config/firebase';
 
 export class Index extends Component {
   constructor(props) {
@@ -15,6 +15,11 @@ export class Index extends Component {
       dbRef: null,
     };
   }
+
+  handleShow = (id) => {
+    getItem(id)
+  }
+  
 
   handleDelete = itemId => {
     removeItem(this.state.dbRef, itemId);
@@ -52,16 +57,18 @@ export class Index extends Component {
       {
         dbRef: 'items/',
       },
-      this.showItems,
+      this.showItems
     );
   }
 
   render() {
     const isAdmin = true;
     const items = this.state.items.map(item => {
-      console.log(item.id);
+     
+
       return (
         <ItemDisplay
+          handleShow={this.handleShow}
           handleDelete={this.handleDelete}
           id={item.id}
           title={item.title}
@@ -70,6 +77,7 @@ export class Index extends Component {
           body={item.body}
           key={item.id}
           time={item.time}
+          dbRef={this.state.dbRef}
         />
       );
     });

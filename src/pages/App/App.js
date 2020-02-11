@@ -6,13 +6,9 @@ import { LoginModal } from '../../components/LoginModal/LoginModal';
 import { SignupModal } from '../../components/SignupModal/SignupModal';
 import Show from '../Show/Show';
 
-
-
 export class App extends Component {
   constructor() {
     super();
-    
-
   }
   render() {
     return (
@@ -42,7 +38,7 @@ export class App extends Component {
         </header>
         <Switch>
           <Route exact path="/" component={Index} />
-          <Route exact path="/show" component={Show} />
+          <Route exact path="/show/:id" component={Show} />
         </Switch>
       </div>
     );

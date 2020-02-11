@@ -9,7 +9,7 @@ class ItemShow extends Component {
   render() {
     return (
       <div>
-        <div>{this.props.img}</div>
+        <div></div>
       </div>
     );
   }

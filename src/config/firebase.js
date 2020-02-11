@@ -26,8 +26,12 @@ function removeItem(ref, id) {
   return database.ref(`${ref}/${id}`).remove();
 }
 
-function updateItem() {
-  //show and update item...
+function getItem(id) {
+  return database.ref(`items/${id}`).on('value', snap => {
+    snap.val()
+    
+  })
 }
 
-export { database, createItem, removeItem, updateItem };
+
+export { database, createItem, removeItem, getItem };
