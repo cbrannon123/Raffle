@@ -3,8 +3,6 @@ import firestore from 'firebase/firestore';
 
 const config = require('../config');
 
-const settings = { timestampsInSnapshots: true };
-
 const fbConfig = {
   apiKey: config.apiKey,
   authDomain: config.authDomain,
@@ -17,6 +15,5 @@ const fbConfig = {
 };
 firebase.initializeApp(fbConfig);
 
-firebase.firestore().settings(settings);
 
 export default firebase;

@@ -22,6 +22,7 @@ class Show extends Component {
         this.setState({
           item: doc.data(),
           key: doc.id,
+          isLoading: false
         });
       } else {
         console.log('Document does not exists.');

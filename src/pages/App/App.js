@@ -37,9 +37,9 @@ export class App extends Component {
             </div>
           </nav>
         </header>
-        <Route exact path="/" component={Index} />
-        <Route path={'/item/:id'} component={Show} />
-        <Route path={'/create'} component={CreateItem} />
+        <Route exact path="/" render={props => <Index {...props} />} />
+        <Route path={'/item/:id'} render={props => <Show {...props} />} />
+        <Route path={'/create'} render={props => <CreateItem {...props} />} />
       </div>
     );
   }
