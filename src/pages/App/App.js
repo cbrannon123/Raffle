@@ -6,6 +6,7 @@ import { LoginModal } from '../../components/LoginModal/LoginModal';
 import { SignupModal } from '../../components/SignupModal/SignupModal';
 import Show from '../Show/Show';
 import CreateItem from '../../components/CreateItem/CreateItem';
+import EditItem from '../EditItem/EditItem';
 
 export class App extends Component {
   constructor() {
@@ -40,6 +41,7 @@ export class App extends Component {
         <Route exact path="/" render={props => <Index {...props} />} />
         <Route path={'/item/:id'} render={props => <Show {...props} />} />
         <Route path={'/create'} render={props => <CreateItem {...props} />} />
+        <Route path={'/edit/:id'} render={props => <EditItem {...props} />} />
       </div>
     );
   }

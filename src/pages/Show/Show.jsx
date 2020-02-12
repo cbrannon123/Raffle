@@ -63,6 +63,7 @@ class Show extends Component {
         <h3>time</h3>
         <p>{this.state.item.time}</p>
         {/* edit link */}
+        <Link to={`/edit/${this.state.key}`}>Edit</Link>
         <button onClick={this.delete.bind(this, this.state.key)}>Delete</button>
       </div>
     );
