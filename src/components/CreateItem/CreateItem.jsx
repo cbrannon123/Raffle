@@ -1,63 +1,54 @@
 import React, { Component } from 'react';
+import ReactDom from 'react-dom';
+import firebase from '../../config/firebase';
+import { Link } from 'react-router-dom';
 import styles from './CreateItem.module.css';
 
 class CreateItem extends Component {
   constructor(props) {
     super(props);
-    //this.handlSubmit = this.handlSubmit.bind(this);
+    this.ref = firebase.firestore().collection('items');
     this.state = {
-      id: '',
       title: '',
       price: '',
       available: '',
-      body: '',
-      time: ''
+      description: '',
+      time: '',
     };
   }
 
-  handleTitle = e => {
-    this.setState({
-      title: e.target.value,
-    });
-  };
-
-  handlePrice = e => {
-    this.setState({
-      price: e.target.value,
-    });
-  };
-
-  handleAvail = e => {
-    this.setState({
-      available: e.target.value,
-    });
-  };
-
-  handleBody = e => {
-    this.setState({
-      body: e.target.value,
-    });
+  onChange = e => {
+    const state = this.state;
+    state[e.target.name] = e.target.value;
+    this.setState(state);
   };
 
   handlSubmit = e => {
     e.preventDefault();
-    this.props.addItem(
-      this.state.title,
-      this.state.price,
-      this.state.available,
-      this.state.body,
-      this.state.id,
-      this.state.time
-    );
 
-    this.setState({
-      id: '',
-      title: '',
-      price: '',
-      available: '',
-      body: '',
-      time: '',
-    });
+    const { title, price, description, available, time } = this.state;
+
+    this.ref
+      .add({
+        title,
+        description,
+        price,
+        time,
+        available,
+      })
+      .then(docRef => {
+        this.setState({
+          title: '',
+          price: '',
+          available: '',
+          description: '',
+          time: '',
+        });
+        this.props.history.push('/');
+      })
+      .catch(err => {
+        console.error('Error on submit', err);
+      });
   };
 
   render() {
@@ -65,7 +56,7 @@ class CreateItem extends Component {
       <div
         style={{
           width: '50vh',
-          marginTop: '10px',
+          marginTop: '100px',
           display: 'flex',
           justifyContent: 'center',
         }}
@@ -79,52 +70,62 @@ class CreateItem extends Component {
           }}
         >
           <h1>Enter item</h1>
+          <Link to="/">Go back</Link>
           <hr />
           <form onSubmit={this.handlSubmit}>
-            <label>item title</label>
+            <label htmlFor="title">item title</label>
             <input
+              type="text"
               placeholder="Enter a title here.."
-              value={this.state.title}
-              onChange={this.handleTitle}
+              value={this.title}
+              name="title"
+              onChange={this.onChange}
             />
             <br />
-            <label>item price</label>
+            <label htmlFor="price">item price</label>
             <input
+              name="price"
+              type="text"
               placeholder="Enter a price here.."
-              value={this.state.price}
-              onChange={this.handlePrice}
+              value={this.price}
+              onChange={this.onChange}
             />
             <br />
-            <label>Number of tickets</label>
+            <label htmlFor="available">Number of tickets</label>
             <input
+              name="available"
+              type="text"
               placeholder="Enter a amount here.."
-              value={this.state.available}
-              onChange={this.handleAvail}
+              value={this.available}
+              onChange={this.onChange}
             />
             <br />
-            <label>Select time</label>
+            <label htmlFor="time">Select time</label>
             <input
+              name="time"
+              type="text"
               placeholder="Enter a time here.."
-              value={this.state.time}
-              onChange={this.handleTitle}
+              value={this.time}
+              onChange={this.onChange}
             />
             <br />
-            <label>Item discription</label>
-            <input
-              placeholder="Enter a discription here.."
-              value={this.state.body}
-              onChange={this.handleBody}
+            <label htmlFor="description">Item description</label>
+            <textarea
+              name="description"
+              placeholder="Enter a description here.."
+              value={this.body}
+              onChange={this.onChange}
             />
             <br />
             <input type="submit" value="submit item" />
           </form>
-          <br />
+          {/* <br />
           <label>Upload img</label>
           <input
             type="file"
             placeholder="Enter a discription here.."
             onChange={this.handleImg}
-          />
+          /> */}
         </div>
       </div>
     );

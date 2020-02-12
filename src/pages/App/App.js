@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Link, Switch, Route } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import styles from './App.module.css';
 import { Index } from '../Index/Index';
 import { LoginModal } from '../../components/LoginModal/LoginModal';
 import { SignupModal } from '../../components/SignupModal/SignupModal';
 import Show from '../Show/Show';
+import CreateItem from '../../components/CreateItem/CreateItem';
 
 export class App extends Component {
   constructor() {
@@ -24,7 +25,7 @@ export class App extends Component {
             <div>
               <ul className={styles.linksContainer}>
                 <li>
-                  <Link to={'/'}>How It Works</Link>
+                  <Link to={'/create'}>CreateItem</Link>
                 </li>
                 <li>
                   <SignupModal />
@@ -36,10 +37,9 @@ export class App extends Component {
             </div>
           </nav>
         </header>
-        <Switch>
-          <Route exact path="/" component={Index} />
-          <Route exact path="/show/:id" component={Show} />
-        </Switch>
+        <Route exact path="/" component={Index} />
+        <Route path={'/item/:id'} component={Show} />
+        <Route path={'/create'} component={CreateItem} />
       </div>
     );
   }

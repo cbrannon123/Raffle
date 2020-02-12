@@ -1,9 +1,11 @@
-import firebase from 'firebase';
-import 'firebase/database';
+import * as firebase from 'firebase';
+import firestore from 'firebase/firestore';
 
 const config = require('../config');
 
-firebase.initializeApp({
+const settings = { timestampsInSnapshots: true };
+
+const fbConfig = {
   apiKey: config.apiKey,
   authDomain: config.authDomain,
   databaseURL: config.databaseURL,
@@ -12,26 +14,9 @@ firebase.initializeApp({
   messagingSenderId: config.messagingSenderId,
   appId: config.appId,
   measurementId: config.measurementId,
-});
+};
+firebase.initializeApp(fbConfig);
 
-//api and config vars
-const database = firebase.database();
+firebase.firestore().settings(settings);
 
-//functions
-function createItem(ref, item) {
-  return database.ref(ref).push(item);
-}
-
-function removeItem(ref, id) {
-  return database.ref(`${ref}/${id}`).remove();
-}
-
-function getItem(id) {
-  return database.ref(`items/${id}`).on('value', snap => {
-    snap.val()
-    
-  })
-}
-
-
-export { database, createItem, removeItem, getItem };
+export default firebase;
