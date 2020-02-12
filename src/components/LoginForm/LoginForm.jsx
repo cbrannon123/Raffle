@@ -37,7 +37,7 @@ export class LoginForm extends Component {
           <div className="form-group">
             <label htmlFor="exampleInputPassword1">Password</label>
             <input
-              oncChange="handlePassword"
+              onChange="handlePassword"
               type="password"
               className="form-control"
               id="exampleInputPassword1"
