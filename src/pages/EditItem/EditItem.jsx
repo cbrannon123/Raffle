@@ -18,11 +18,11 @@ class EditItem extends Component {
 
   componentDidMount() {
     const ref = firebase
-    .firestore()
-    .collection('items')
-    .doc(this.props.match.params.id);
+      .firestore()
+      .collection('items')
+      .doc(this.props.match.params.id);
     ref.get().then(doc => {
-      console.log('hit from edit')
+      console.log('hit from edit');
       if (doc.exists) {
         const item = doc.data();
         this.setState({
@@ -33,6 +33,7 @@ class EditItem extends Component {
           description: item.description,
           time: item.time,
         });
+        console.log(this.state.key);
       } else {
         console.log('Document does not exist');
       }
@@ -41,10 +42,9 @@ class EditItem extends Component {
 
   onChange = e => {
     const state = this.state;
-
     state[e.target.name] = e.target.value;
     //could cause error
-    this.setState( state );
+    this.setState({ item: state });
   };
 
   handleSubmit = e => {
@@ -97,10 +97,12 @@ class EditItem extends Component {
             textAlign: 'center',
           }}
         >
-          <h1>Edit item <p>{this.title}</p></h1>
+          <h1>
+            Edit item <p>{this.title}</p>
+          </h1>
           <Link to={`/item/${this.state.key}`}>Go back</Link>
           <hr />
-          <form onSubmit={this.handlSubmit}>
+          <form onSubmit={this.handleSubmit}>
             <label htmlFor="title">item title</label>
             <input
               type="text"
@@ -115,7 +117,7 @@ class EditItem extends Component {
               name="price"
               type="text"
               placeholder="Enter a price here.."
-              value={this.price}
+              value={this.state.price}
               onChange={this.onChange}
             />
             <br />
@@ -124,7 +126,7 @@ class EditItem extends Component {
               name="available"
               type="text"
               placeholder="Enter a amount here.."
-              value={this.available}
+              value={this.state.available}
               onChange={this.onChange}
             />
             <br />
@@ -133,7 +135,7 @@ class EditItem extends Component {
               name="time"
               type="text"
               placeholder="Enter a time here.."
-              value={this.time}
+              value={this.state.time}
               onChange={this.onChange}
             />
             <br />
@@ -141,7 +143,7 @@ class EditItem extends Component {
             <textarea
               name="description"
               placeholder="Enter a description here.."
-              value={this.body}
+              value={this.state.description}
               onChange={this.onChange}
             />
             <br />

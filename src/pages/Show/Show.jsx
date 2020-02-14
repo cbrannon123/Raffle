@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 class Show extends Component {
   constructor(props) {
     super(props);
-    this.unmount = null
+    this.unmount = null;
     this.state = {
       item: {},
-      key: ''
+      key: '',
     };
   }
 
@@ -22,7 +22,7 @@ class Show extends Component {
         this.setState({
           item: doc.data(),
           key: doc.id,
-          isLoading: false
+          isLoading: false,
         });
       } else {
         console.log('Document does not exists.');
@@ -30,7 +30,7 @@ class Show extends Component {
     });
   }
 
-  delete (id) {
+  delete(id) {
     firebase
       .firestore()
       .collection('items')
@@ -42,29 +42,40 @@ class Show extends Component {
       })
       .catch(err => {
         console.log('error with delete');
-      })
+      });
   }
-  
+
   render() {
     return (
-      <div style={{ marginTop: '100px' }}>
-        <h3>title</h3>
-        <h2>{this.state.item.title}</h2>
-        <br />
-        <h3>description</h3>
-        <p>{this.state.item.description}</p>
-        <br />
-        <h3>price</h3>
-        <p>{this.state.item.price}</p>
-        <br />
-        <h3>amount</h3>
-        <p>{this.state.item.available}</p>
-        <br />
-        <h3>time</h3>
-        <p>{this.state.item.time}</p>
-        {/* edit link */}
-        <Link to={`/edit/${this.state.key}`}>Edit</Link>
-        <button onClick={this.delete.bind(this, this.state.key)}>Delete</button>
+      <div
+        style={{
+          marginTop: '100px',
+          display: 'flex',
+          flexFlow: 'column nowrap',
+          justifyContent: 'center',
+        }}
+      >
+        <div>
+          <h3>title</h3>
+          <h2>{this.state.item.title}</h2>
+          <br />
+          <h3>description</h3>
+          <p>{this.state.item.description}</p>
+          <br />
+          <h3>price</h3>
+          <p>{this.state.item.price}</p>
+          <br />
+          <h3>amount</h3>
+          <p>{this.state.item.available}</p>
+          <br />
+          <h3>time</h3>
+          <p>{this.state.item.time}</p>
+          {/* edit link */}
+          <Link to={`/edit/${this.state.key}`}>Edit</Link>
+          <button onClick={this.delete.bind(this, this.state.key)}>
+            Delete
+          </button>
+        </div>
       </div>
     );
   }

@@ -23,7 +23,7 @@ class CreateItem extends Component {
     this.setState(state);
   };
 
-  handlSubmit = e => {
+  handleSubmit = e => {
     e.preventDefault();
 
     const { title, price, description, available, time } = this.state;
@@ -72,7 +72,7 @@ class CreateItem extends Component {
           <h1>Enter item</h1>
           <Link to="/">Go back</Link>
           <hr />
-          <form onSubmit={this.handlSubmit}>
+          <form onSubmit={this.handleSubmit}>
             <label htmlFor="title">item title</label>
             <input
               type="text"
