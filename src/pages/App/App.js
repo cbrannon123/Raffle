@@ -2,23 +2,37 @@ import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
 import styles from './App.module.css';
 import { Index } from '../Index/Index';
-import { LoginModal } from '../../components/LoginModal/LoginModal';
-import { SignupModal } from '../../components/SignupModal/SignupModal';
 import Show from '../Show/Show';
 import CreateItem from '../../components/CreateItem/CreateItem';
 import EditItem from '../EditItem/EditItem';
+import firebase from '../../config/firebase';
+import StyledAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 export class App extends Component {
-  constructor() {
-    super();
+  state = { isSignedIn: false };
+  uiConfig = {
+    signInFlow: 'popup',
+    signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
+  };
+
+  componentDidMount = () => {
+    this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
+      this.setState({ isSignedIn: !!user });
+      console.log("user", user)
+    });
+  };
+
+  componentWillUnmount() {
+    this.unregisterAuthObserver();
   }
+
   render() {
     return (
       <div className="App">
         <header className={styles.header} data-testid="header">
           <nav className={styles.nav}>
             <div className={styles.logo}>
-              <span>img</span>
+              <span className={styles.img}>img</span>
               <Link to={'/'} className={styles.companyName}>
                 Name
               </Link>
@@ -28,16 +42,23 @@ export class App extends Component {
                 <li>
                   <Link to={'/create'}>CreateItem</Link>
                 </li>
-                <li>
-                  <SignupModal />
-                </li>
-                <li>
-                  <LoginModal />
-                </li>
+                {this.state.isSignedIn ? (
+                  <li>
+                    <button onClick={() => firebase.auth().signOut()}>
+                      Sign Out
+                    </button>
+                  </li>
+                ) : (
+                  <StyledAuth
+                    uiConfig={this.uiConfig}
+                    firebaseAuth={firebase.auth()}
+                  />
+                )}
               </ul>
             </div>
           </nav>
         </header>
+
         <Route exact path="/" render={props => <Index {...props} />} />
         <Route path={'/item/:id'} render={props => <Show {...props} />} />
         <Route path={'/create'} render={props => <CreateItem {...props} />} />

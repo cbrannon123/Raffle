@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from '../../config/firebase';
 import { Link } from 'react-router-dom';
+import styles from './Show.module.css';
 
 class Show extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class Show extends Component {
     this.state = {
       item: {},
       key: '',
+      //
     };
   }
 
@@ -47,15 +49,8 @@ class Show extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          marginTop: '100px',
-          display: 'flex',
-          flexFlow: 'column nowrap',
-          justifyContent: 'center',
-        }}
-      >
-        <div>
+      <div className={styles.container}>
+        <div className={styles.wrapper}>
           <h3>title</h3>
           <h2>{this.state.item.title}</h2>
           <br />

@@ -1,3 +1,15 @@
-div {
-  background-color: red;
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.wrapper {
+  height: 40%;
+  width: 80%;
+  justify-content: center;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+
 }
