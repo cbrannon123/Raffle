@@ -6,6 +6,7 @@ import firebase from '../../config/firebase';
 export class Index extends Component {
   constructor(props) {
     super(props);
+    console.log(this.props)
     this.ref = firebase.firestore().collection('items');
     this.unsubscribe = null;
     this.state = {
@@ -37,7 +38,7 @@ export class Index extends Component {
   }
 
   render() {
-    const isAdmin = true;
+   
     const items = this.state.items.map(item => {
       return (
         <ItemDisplay
