@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Redirect } from 'react-router-dom';
 import styles from './App.module.css';
 import { Index } from '../Index/Index';
 import Show from '../Show/Show';
@@ -18,7 +18,7 @@ export class App extends Component {
   componentDidMount = () => {
     this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
       this.setState({ isSignedIn: !!user });
-      console.log("user", user)
+      console.log('user', user);
     });
   };
 
@@ -60,7 +60,17 @@ export class App extends Component {
         </header>
 
         <Route exact path="/" render={props => <Index {...props} />} />
-        <Route path={'/item/:id'} render={props => <Show {...props} />} />
+
+        <Route
+          path={'/item/:id'}
+          render={props =>
+            firebase.auth().currentUser ? (
+              <Show {...props} />
+            ) : (
+              <Redirect to="/" />
+            )
+          }
+        />
         <Route path={'/create'} render={props => <CreateItem {...props} />} />
         <Route path={'/edit/:id'} render={props => <EditItem {...props} />} />
       </div>

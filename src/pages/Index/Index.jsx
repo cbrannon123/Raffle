@@ -37,6 +37,12 @@ export class Index extends Component {
     this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
   }
 
+  componentWillUnmount() {
+    console.log('Hello from unmount')
+    this.unsubscribe = this.ref.onSnapshot(this.unsubscribe)
+
+  }
+
   render() {
    
     const items = this.state.items.map(item => {

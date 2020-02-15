@@ -31,7 +31,7 @@ class Show extends Component {
       }
     });
   }
-
+  
   delete(id) {
     firebase
       .firestore()
@@ -46,6 +46,7 @@ class Show extends Component {
         console.log('error with delete');
       });
   }
+  
 
   render() {
     return (
