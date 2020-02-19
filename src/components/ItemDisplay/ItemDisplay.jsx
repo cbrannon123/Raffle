@@ -1,28 +1,45 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import styles from './ItemDisplay.module.css';
 import ItemImage from './ItemImage/ItemImage';
 import ItemInfo from '../ItemDisplay/ItemInfo/ItemInfo';
 import firebase from '../../config/firebase';
 
-const ItemDisplay = props => (
-  <div className={styles.displayContainer}>
-    <ItemImage src={props.imgSrc} />
+
+class ItemDisplay extends Component {
+  constructor(props) {
+    super(props);
+
     
-    <ItemInfo
-      title={props.title}
-      price={props.price}
-      available={props.avail}
-      time={props.time}
-    />
-    {firebase.auth().currentUser ? ( 
-    <Link className={styles.showButton} to={`/item/${props.id}`}>
-      view
-    </Link>
-    ) : (
-        <p>Login to view</p>
-    )} 
-  </div>
-);
+      
+    
+    };
+  
+  render() {
+    return (
+    
+      <div className={styles.displayContainer}>
+    
+        <ItemImage src={this.props.imgSrc} />
+    
+        <ItemInfo
+          title={this.props.title}
+          price={this.props.price}
+          available={this.props.avail}
+          time={this.props.time}
+        />
+        {firebase.auth().currentUser ?
+      
+        <Link className={styles.showButton} to={`/item/${this.props.id}`}>
+          view
+          </Link>
+          : 
+            <p>Login to view</p>
+          } 
+      
+      </div>
+    );
+  }
+}
 
 export default ItemDisplay;

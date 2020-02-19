@@ -9,17 +9,106 @@ import firebase from '../../config/firebase';
 import StyledAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 export class App extends Component {
-  state = { isSignedIn: false };
+  state = {
+    isSignedIn: false,
+    admin: false
+  
+  };
+
+  
+
   uiConfig = {
     signInFlow: 'popup',
     signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
   };
+  
+  
+  userNav = () => {
+    return (
+      <header className={styles.header} data-testid="header">
+      <nav className={styles.nav}>
+        <div className={styles.logo}>
+          <span className={styles.img}>img</span>
+          <Link to={'/'} className={styles.companyName}>
+            Name
+          </Link>
+        </div>
+        <div>
+          <ul className={styles.linksContainer}>
+            {this.state.isSignedIn ? (
+              <li>
+                <button onClick={() => firebase.auth().signOut()}>
+                  Sign Out
+                </button>
+              </li>
+            ) : (
+              <StyledAuth
+                uiConfig={this.uiConfig}
+                firebaseAuth={firebase.auth()}
+              />
+            )}
+          </ul>
+        </div>
+      </nav>
+    </header>
+    )
+  }
+
+  adminNav = () => {
+    return (
+      <header className={styles.header} data-testid="header">
+        <nav className={styles.nav}>
+          <div className={styles.logo}>
+            <span className={styles.img}>img</span>
+            <Link to={'/'} className={styles.companyName}>
+              Name
+            </Link>
+          </div>
+          <div>
+            <ul className={styles.linksContainer}>
+              <li>
+                <Link to={'/create'}>CreateItem</Link>
+              </li>
+              {this.state.isSignedIn ? (
+                <li>
+                  <button onClick={() => firebase.auth().signOut()}>
+                    Sign Out
+                  </button>
+                </li>
+              ) : (
+                <StyledAuth
+                  uiConfig={this.uiConfig}
+                  firebaseAuth={firebase.auth()}
+                />
+              )}
+            </ul>
+          </div>
+        </nav>
+      </header>
+    );
+  };
 
   componentDidMount = () => {
+    
     this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
-      this.setState({ isSignedIn: !!user });
-      console.log('user', user);
-    });
+      if (user) {
+        user.getIdTokenResult().then((id) => {
+          this.setState({
+            isSignedIn: !!user,
+            admin: id.claims.admin
+          });
+        });
+      } else {
+        this.setState({
+        
+          isSignedIn: !!user,
+          admin: false
+       
+       
+        });
+      }
+      });
+  
   };
 
   componentWillUnmount() {
@@ -29,35 +118,12 @@ export class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className={styles.header} data-testid="header">
-          <nav className={styles.nav}>
-            <div className={styles.logo}>
-              <span className={styles.img}>img</span>
-              <Link to={'/'} className={styles.companyName}>
-                Name
-              </Link>
-            </div>
-            <div>
-              <ul className={styles.linksContainer}>
-                <li>
-                  <Link to={'/create'}>CreateItem</Link>
-                </li>
-                {this.state.isSignedIn ? (
-                  <li>
-                    <button onClick={() => firebase.auth().signOut()}>
-                      Sign Out
-                    </button>
-                  </li>
-                ) : (
-                  <StyledAuth
-                    uiConfig={this.uiConfig}
-                    firebaseAuth={firebase.auth()}
-                  />
-                )}
-              </ul>
-            </div>
-          </nav>
-        </header>
+       {this.state.admin ?
+            this.adminNav()
+            :
+            this.userNav()
+      
+        })} 
 
         <Route exact path="/" render={props => <Index {...props} />} />
 
@@ -65,7 +131,7 @@ export class App extends Component {
           path={'/item/:id'}
           render={props =>
             firebase.auth().currentUser ? (
-              <Show {...props} />
+              <Show isAdmin={this.state.admin} {...props} />
             ) : (
               <Redirect to="/" />
             )

@@ -1,5 +1,7 @@
 import * as firebase from 'firebase';
-import firestore from 'firebase/firestore';
+import 'firebase/firestore';
+import 'firebase/functions'
+
 
 const config = require('../config');
 
@@ -14,6 +16,6 @@ const fbConfig = {
   measurementId: config.measurementId,
 };
 firebase.initializeApp(fbConfig);
-
+let functions = firebase.functions()
 
 export default firebase;

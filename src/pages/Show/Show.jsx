@@ -31,7 +31,7 @@ class Show extends Component {
       }
     });
   }
-  
+
   delete(id) {
     firebase
       .firestore()
@@ -39,14 +39,12 @@ class Show extends Component {
       .doc(id)
       .delete()
       .then(() => {
-        console.log('success');
         this.props.history.push('/');
       })
       .catch(err => {
-        console.log('error with delete');
+        console.error(err);
       });
   }
-  
 
   render() {
     return (
@@ -66,11 +64,16 @@ class Show extends Component {
           <br />
           <h3>time</h3>
           <p>{this.state.item.time}</p>
-          {/* edit link */}
-          <Link to={`/edit/${this.state.key}`}>Edit</Link>
-          <button onClick={this.delete.bind(this, this.state.key)}>
-            Delete
-          </button>
+          {this.props.isAdmin == true ? (
+            <div>
+              <Link to={`/edit/${this.state.key}`}>Edit</Link>
+              <button onClick={this.delete.bind(this, this.state.key)}>
+                Delete{' '}
+              </button>
+            </div>
+          ) : (
+            <p>piss</p>
+          )}
         </div>
       </div>
     );
