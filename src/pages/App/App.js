@@ -93,6 +93,7 @@ export class App extends Component {
     this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
       if (user) {
         user.getIdTokenResult().then((id) => {
+          console.log(id.claims)
           this.setState({
             isSignedIn: !!user,
             admin: id.claims.admin

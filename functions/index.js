@@ -11,7 +11,7 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
  response.send("Hello from Firebase!");
 });
 
-admin.auth().setCustomUserClaims('YPoG5XEs0pe09mYv9shTysuEeGu2', {admin: true}).then(() => {
+admin.auth().setCustomUserClaims(functions.config().admin.id, {admin: true}).then(() => {
   // The new custom claims will propagate to the user's ID token the
   // next time a new one is issued.
 });
