@@ -11,48 +11,44 @@ import StyledAuth from 'react-firebaseui/StyledFirebaseAuth';
 export class App extends Component {
   state = {
     isSignedIn: false,
-    admin: false
-  
+    admin: false,
   };
-
-  
 
   uiConfig = {
     signInFlow: 'popup',
     signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
   };
-  
-  
+
   userNav = () => {
     return (
       <header className={styles.header} data-testid="header">
-      <nav className={styles.nav}>
-        <div className={styles.logo}>
-          <span className={styles.img}>img</span>
-          <Link to={'/'} className={styles.companyName}>
-            Name
-          </Link>
-        </div>
-        <div>
-          <ul className={styles.linksContainer}>
-            {this.state.isSignedIn ? (
-              <li>
-                <button onClick={() => firebase.auth().signOut()}>
-                  Sign Out
-                </button>
-              </li>
-            ) : (
-              <StyledAuth
-                uiConfig={this.uiConfig}
-                firebaseAuth={firebase.auth()}
-              />
-            )}
-          </ul>
-        </div>
-      </nav>
-    </header>
-    )
-  }
+        <nav className={styles.nav}>
+          <div className={styles.logo}>
+            <span className={styles.img}>img</span>
+            <Link to={'/'} className={styles.companyName}>
+              Name
+            </Link>
+          </div>
+          <div>
+            <ul className={styles.linksContainer}>
+              {this.state.isSignedIn ? (
+                <li>
+                  <button onClick={() => firebase.auth().signOut()}>
+                    Sign Out
+                  </button>
+                </li>
+              ) : (
+                <StyledAuth
+                  uiConfig={this.uiConfig}
+                  firebaseAuth={firebase.auth()}
+                />
+              )}
+            </ul>
+          </div>
+        </nav>
+      </header>
+    );
+  };
 
   adminNav = () => {
     return (
@@ -89,27 +85,22 @@ export class App extends Component {
   };
 
   componentDidMount = () => {
-    
     this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        user.getIdTokenResult().then((id) => {
-          console.log(id.claims)
+        user.getIdTokenResult().then(id => {
+          console.log(id.claims);
           this.setState({
             isSignedIn: !!user,
-            admin: id.claims.admin
+            admin: id.claims.admin,
           });
         });
       } else {
         this.setState({
-        
           isSignedIn: !!user,
-          admin: false
-       
-       
+          admin: false,
         });
       }
-      });
-  
+    });
   };
 
   componentWillUnmount() {
@@ -119,15 +110,8 @@ export class App extends Component {
   render() {
     return (
       <div className="App">
-       {this.state.admin ?
-            this.adminNav()
-            :
-            this.userNav()
-      
-        })} 
-
+        {this.state.admin ? this.adminNav() : this.userNav()})}
         <Route exact path="/" render={props => <Index {...props} />} />
-
         <Route
           path={'/item/:id'}
           render={props =>

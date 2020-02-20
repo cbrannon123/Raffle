@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import ReactDom from 'react-dom';
 import firebase from '../../config/firebase';
 import { Link } from 'react-router-dom';
 import styles from './CreateItem.module.css';
+import FileUploader from 'react-firebase-file-uploader';
 
 class CreateItem extends Component {
   constructor(props) {
@@ -14,6 +14,9 @@ class CreateItem extends Component {
       available: '',
       description: '',
       time: '',
+      filenames: [],
+      downloadURLs: [],
+      uploadProgress: 0,
     };
   }
 
@@ -119,13 +122,17 @@ class CreateItem extends Component {
             <br />
             <input type="submit" value="submit item" />
           </form>
-          {/* <br />
-          <label>Upload img</label>
-          <input
-            type="file"
-            placeholder="Enter a discription here.."
-            onChange={this.handleImg}
-          /> */}
+          <FileUploader
+            accept="image/*"
+            name="image-uploader-multiple"
+            randomizeFilename
+            storageRef={firebase.storage().ref('images')}
+            onUploadStart={this.handleUploadStart}
+            onUploadError={this.handleUploadError}
+            onUploadSuccess={this.handleUploadSuccess}
+            onProgress={this.handleProgress}
+            multiple
+          />
         </div>
       </div>
     );
