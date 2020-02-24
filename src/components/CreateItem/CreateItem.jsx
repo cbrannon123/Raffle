@@ -3,6 +3,7 @@ import firebase from '../../config/firebase';
 import { Link } from 'react-router-dom';
 import styles from './CreateItem.module.css';
 import FileUploader from 'react-firebase-file-uploader';
+import ItemImage from '../ItemDisplay/ItemImage/ItemImage';
 
 class CreateItem extends Component {
   constructor(props) {
@@ -160,9 +161,10 @@ class CreateItem extends Component {
           </form>
           <p>Progress: {this.state.uploadProgress}</p>
           <p>filenames: {this.state.filenames.join(", ")}</p>
-          <div style={{display: 'flex'}}>
+          <div style={{display:'flex', alignContent:'center'}}>
+          <div style={{display:'flex', justifySelf:'center'}}>
             {this.state.downloadURLs.map((downloadURL, i) => {
-              return <img key={i} src={downloadURL} />
+              return <ItemImage key={i} url={downloadURL} />
             })}
           </div>
           <FileUploader
@@ -176,7 +178,8 @@ class CreateItem extends Component {
             onProgress={this.handleProgress}
             multiple
           />
-        </div>
+          </div>
+          </div>
       </div>
     );
   }

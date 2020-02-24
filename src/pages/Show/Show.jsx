@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from '../../config/firebase';
 import { Link } from 'react-router-dom';
 import styles from './Show.module.css';
+import ItemImage from '../../components/ItemDisplay/ItemImage/ItemImage';
 
 class Show extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class Show extends Component {
     this.unmount = null;
     this.state = {
       item: {},
+      url: [],
       key: '',
       //
     };
@@ -24,6 +26,7 @@ class Show extends Component {
         this.setState({
           item: doc.data(),
           key: doc.id,
+          url: doc.data().downloadURLs,
           isLoading: false,
         });
       } else {
@@ -50,6 +53,10 @@ class Show extends Component {
     return (
       <div className={styles.container}>
         <div className={styles.wrapper}>
+          <div style={{ display: 'flex' }}>
+            <ItemImage url={this.state.url[0]} />
+            <ItemImage url={this.state.url[1]} />
+          </div>
           <h3>title</h3>
           <h2>{this.state.item.title}</h2>
           <br />
