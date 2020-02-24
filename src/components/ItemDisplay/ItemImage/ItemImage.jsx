@@ -10,7 +10,7 @@ class ItemImage extends Component {
   render() {
     return (
       <div className={styles.imageContainer}>
-        <img src={this.props.src} />
+        <img src={this.props.url} />
       </div>
     );
   }

@@ -17,7 +17,41 @@ class CreateItem extends Component {
       filenames: [],
       downloadURLs: [],
       uploadProgress: 0,
+      isUploading: false,
     };
+  }
+
+  handleUploadStart = () => 
+    this.setState({
+      isUploading: true,
+      uploadProgress: 0,
+    });
+  
+  handleProgress = progress =>
+    this.setState({
+      uploadProgress: progress
+    });
+  
+  handleUploadError = error => {
+    this.setState({
+      isUploading: false
+    });
+    console.error(error)
+  }
+
+  handleUploadSuccess = async filename => {
+    const downloadURL = await firebase
+      .storage()
+      .ref("images")
+      .child(filename)
+      .getDownloadURL();
+    
+    this.setState(oldState => ({
+      filenames: [...oldState.filenames, filename],
+      downloadURLs: [...oldState.downloadURLs, downloadURL],
+      uploadProgress: 100,
+      isUploading: false
+    }))
   }
 
   onChange = e => {
@@ -29,7 +63,7 @@ class CreateItem extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { title, price, description, available, time } = this.state;
+    const { title, price, description, available, time, downloadURLs } = this.state;
 
     this.ref
       .add({
@@ -38,6 +72,7 @@ class CreateItem extends Component {
         price,
         time,
         available,
+        downloadURLs
       })
       .then(docRef => {
         this.setState({
@@ -46,6 +81,7 @@ class CreateItem extends Component {
           available: '',
           description: '',
           time: '',
+          downloadURLs: []
         });
         this.props.history.push('/');
       })
@@ -122,6 +158,13 @@ class CreateItem extends Component {
             <br />
             <input type="submit" value="submit item" />
           </form>
+          <p>Progress: {this.state.uploadProgress}</p>
+          <p>filenames: {this.state.filenames.join(", ")}</p>
+          <div style={{display: 'flex'}}>
+            {this.state.downloadURLs.map((downloadURL, i) => {
+              return <img key={i} src={downloadURL} />
+            })}
+          </div>
           <FileUploader
             accept="image/*"
             name="image-uploader-multiple"

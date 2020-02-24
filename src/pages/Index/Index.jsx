@@ -18,7 +18,7 @@ export class Index extends Component {
   onCollectionUpdate = querySnapshot => {
     const items = [];
     querySnapshot.forEach(doc => {
-      const { title, description, available, price, time } = doc.data();
+      const { title, description, available, price, time, downloadURLs } = doc.data();
       items.push({
         key: doc.id,
         doc,
@@ -27,6 +27,7 @@ export class Index extends Component {
         price,
         available,
         time,
+        downloadURLs
       });
       this.setState({
         items,
@@ -55,6 +56,7 @@ export class Index extends Component {
           avail={item.available}
           body={item.description}
           time={item.time}
+          url={item.downloadURLs}
         />
       );
     });

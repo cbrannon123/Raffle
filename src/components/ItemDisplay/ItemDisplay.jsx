@@ -20,7 +20,7 @@ class ItemDisplay extends Component {
     
       <div className={styles.displayContainer}>
     
-        <ItemImage src={this.props.imgSrc} />
+        <ItemImage url={this.props.url[0]} />
     
         <ItemInfo
           title={this.props.title}
