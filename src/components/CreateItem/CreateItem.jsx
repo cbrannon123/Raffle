@@ -62,10 +62,13 @@ class CreateItem extends Component {
   };
 
   handleSubmit = e => {
+    
     e.preventDefault();
 
-    const { title, price, description, available, time, downloadURLs } = this.state;
-
+    const { title, price, description, available, time, downloadURLs, filenames } = this.state;
+    if (filenames.length == 0) {
+      return alert('add pictures')
+    }
     this.ref
       .add({
         title,
@@ -73,16 +76,19 @@ class CreateItem extends Component {
         price,
         time,
         available,
-        downloadURLs
+        downloadURLs,
+        filenames
       })
       .then(docRef => {
+        
         this.setState({
           title: '',
           price: '',
           available: '',
           description: '',
           time: '',
-          downloadURLs: []
+          downloadURL: [],
+          filenames: []
         });
         this.props.history.push('/');
       })

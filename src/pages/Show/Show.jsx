@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Children } from 'react';
 import firebase from '../../config/firebase';
 import { Link } from 'react-router-dom';
 import styles from './Show.module.css';
 import ItemImage from '../../components/ItemDisplay/ItemImage/ItemImage';
+import { storage } from 'firebase';
 
 class Show extends Component {
   constructor(props) {
@@ -10,9 +11,9 @@ class Show extends Component {
     this.unmount = null;
     this.state = {
       item: {},
-      url: [],
+      urls: [],
+      names: [],
       key: '',
-      //
     };
   }
 
@@ -26,7 +27,8 @@ class Show extends Component {
         this.setState({
           item: doc.data(),
           key: doc.id,
-          url: doc.data().downloadURLs,
+          urls: doc.data().downloadURLs,
+          names: doc.data().filenames,
           isLoading: false,
         });
       } else {
@@ -36,6 +38,18 @@ class Show extends Component {
   }
 
   delete(id) {
+    const string = this.state.names.map(name => {
+      return name;
+    });
+    var ref1 = () =>
+      string.forEach(i => {
+        return firebase
+          .storage()
+          .ref('images/')
+          .child(`${i}`)
+          .delete();
+      });
+    ref1();
     firebase
       .firestore()
       .collection('items')
@@ -50,13 +64,13 @@ class Show extends Component {
   }
 
   render() {
+    const images = this.state.urls.map((url, i) => {
+      return <ItemImage key={i} url={url} />;
+    });
     return (
       <div className={styles.container}>
         <div className={styles.wrapper}>
-          <div style={{ display: 'flex' }}>
-            <ItemImage url={this.state.url[0]} />
-            <ItemImage url={this.state.url[1]} />
-          </div>
+          <div style={{ display: 'flex' }}>{images}</div>
           <h3>title</h3>
           <h2>{this.state.item.title}</h2>
           <br />

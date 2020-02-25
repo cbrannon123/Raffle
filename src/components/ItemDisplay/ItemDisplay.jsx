@@ -16,6 +16,8 @@ class ItemDisplay extends Component {
     };
   
   render() {
+    
+
     return (
     
       <div className={styles.displayContainer}>

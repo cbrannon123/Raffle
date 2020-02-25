@@ -1,15 +1,18 @@
 .container {
   display: flex;
+  color: red;
   justify-content: center;
   flex-direction: row;
 }
 
 .wrapper {
+  display: flex;
   height: 40%;
   width: 80%;
   justify-content: center;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 
 }
