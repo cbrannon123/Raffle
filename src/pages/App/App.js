@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Link, Route, Redirect } from 'react-router-dom';
-import styles from './App.module.css';
-import { Index } from '../Index/Index';
+import { Route, Redirect } from 'react-router-dom';
+import firebase from '../../config/firebase';
+import AdminNav from '../../components/Nav/AdminNav/AdminNav';
+import UserNav from '../../components/Nav/UserNav/UserNav';
+import Index from '../Index/Index';
 import Show from '../Show/Show';
 import CreateItem from '../../components/CreateItem/CreateItem';
 import EditItem from '../EditItem/EditItem';
-import firebase from '../../config/firebase';
-import StyledAuth from 'react-firebaseui/StyledFirebaseAuth';
+import styles from './App.module.css';
 
 export class App extends Component {
   state = {
@@ -17,71 +18,6 @@ export class App extends Component {
   uiConfig = {
     signInFlow: 'popup',
     signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
-  };
-
-  userNav = () => {
-    return (
-      <header className={styles.header} data-testid="header">
-        <nav className={styles.nav}>
-          <div className={styles.logo}>
-            <span className={styles.img}>img</span>
-            <Link to={'/'} className={styles.companyName}>
-              Name
-            </Link>
-          </div>
-          <div>
-            <ul className={styles.linksContainer}>
-              {this.state.isSignedIn ? (
-                <li>
-                  <button onClick={() => firebase.auth().signOut()}>
-                    Sign Out
-                  </button>
-                </li>
-              ) : (
-                <StyledAuth
-                  uiConfig={this.uiConfig}
-                  firebaseAuth={firebase.auth()}
-                />
-              )}
-            </ul>
-          </div>
-        </nav>
-      </header>
-    );
-  };
-
-  adminNav = () => {
-    return (
-      <header className={styles.header} data-testid="header">
-        <nav className={styles.nav}>
-          <div className={styles.logo}>
-            <span className={styles.img}>img</span>
-            <Link to={'/'} className={styles.companyName}>
-              Name
-            </Link>
-          </div>
-          <div>
-            <ul className={styles.linksContainer}>
-              <li>
-                <Link to={'/create'}>CreateItem</Link>
-              </li>
-              {this.state.isSignedIn ? (
-                <li>
-                  <button onClick={() => firebase.auth().signOut()}>
-                    Sign Out
-                  </button>
-                </li>
-              ) : (
-                <StyledAuth
-                  uiConfig={this.uiConfig}
-                  firebaseAuth={firebase.auth()}
-                />
-              )}
-            </ul>
-          </div>
-        </nav>
-      </header>
-    );
   };
 
   componentDidMount = () => {
@@ -110,7 +46,18 @@ export class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.admin ? this.adminNav() : this.userNav()})}
+        {this.state.admin ? (
+          <AdminNav
+            uiConfig={this.uiConfig}
+            isSignedIn={this.state.isSignedIn}
+          />
+        ) : (
+          <UserNav
+            uiConfig={this.uiConfig}
+            isSignedIn={this.state.isSignedIn}
+          />
+        )}
+        )}
         <Route exact path="/" render={props => <Index {...props} />} />
         <Route
           path={'/item/:id'}

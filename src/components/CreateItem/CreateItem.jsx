@@ -22,38 +22,38 @@ class CreateItem extends Component {
     };
   }
 
-  handleUploadStart = () => 
+  handleUploadStart = () =>
     this.setState({
       isUploading: true,
       uploadProgress: 0,
     });
-  
+
   handleProgress = progress =>
     this.setState({
-      uploadProgress: progress
+      uploadProgress: progress,
     });
-  
+
   handleUploadError = error => {
     this.setState({
-      isUploading: false
+      isUploading: false,
     });
-    console.error(error)
-  }
+    console.error(error);
+  };
 
   handleUploadSuccess = async filename => {
     const downloadURL = await firebase
       .storage()
-      .ref("images")
+      .ref('images')
       .child(filename)
       .getDownloadURL();
-    
+
     this.setState(oldState => ({
       filenames: [...oldState.filenames, filename],
       downloadURLs: [...oldState.downloadURLs, downloadURL],
       uploadProgress: 100,
-      isUploading: false
-    }))
-  }
+      isUploading: false,
+    }));
+  };
 
   onChange = e => {
     const state = this.state;
@@ -62,12 +62,19 @@ class CreateItem extends Component {
   };
 
   handleSubmit = e => {
-    
     e.preventDefault();
 
-    const { title, price, description, available, time, downloadURLs, filenames } = this.state;
-    if (filenames.length == 0) {
-      return alert('add pictures')
+    const {
+      title,
+      price,
+      description,
+      available,
+      time,
+      downloadURLs,
+      filenames,
+    } = this.state;
+    if (filenames.length === 0) {
+      return alert('add pictures');
     }
     this.ref
       .add({
@@ -77,10 +84,9 @@ class CreateItem extends Component {
         time,
         available,
         downloadURLs,
-        filenames
+        filenames,
       })
       .then(docRef => {
-        
         this.setState({
           title: '',
           price: '',
@@ -88,7 +94,7 @@ class CreateItem extends Component {
           description: '',
           time: '',
           downloadURL: [],
-          filenames: []
+          filenames: [],
         });
         this.props.history.push('/');
       })
@@ -166,26 +172,26 @@ class CreateItem extends Component {
             <input type="submit" value="submit item" />
           </form>
           <p>Progress: {this.state.uploadProgress}</p>
-          <p>filenames: {this.state.filenames.join(", ")}</p>
-          <div style={{display:'flex', alignContent:'center'}}>
-          <div style={{display:'flex', justifySelf:'center'}}>
-            {this.state.downloadURLs.map((downloadURL, i) => {
-              return <ItemImage key={i} url={downloadURL} />
-            })}
+          <p>filenames: {this.state.filenames.join(', ')}</p>
+          <div style={{ display: 'flex', alignContent: 'center' }}>
+            <div style={{ display: 'flex', justifySelf: 'center' }}>
+              {this.state.downloadURLs.map((downloadURL, i) => {
+                return <ItemImage key={i} url={downloadURL} />;
+              })}
+            </div>
+            <FileUploader
+              accept="image/*"
+              name="image-uploader-multiple"
+              randomizeFilename
+              storageRef={firebase.storage().ref('images')}
+              onUploadStart={this.handleUploadStart}
+              onUploadError={this.handleUploadError}
+              onUploadSuccess={this.handleUploadSuccess}
+              onProgress={this.handleProgress}
+              multiple
+            />
           </div>
-          <FileUploader
-            accept="image/*"
-            name="image-uploader-multiple"
-            randomizeFilename
-            storageRef={firebase.storage().ref('images')}
-            onUploadStart={this.handleUploadStart}
-            onUploadError={this.handleUploadError}
-            onUploadSuccess={this.handleUploadSuccess}
-            onProgress={this.handleProgress}
-            multiple
-          />
-          </div>
-          </div>
+        </div>
       </div>
     );
   }

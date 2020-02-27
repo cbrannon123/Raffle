@@ -3,7 +3,7 @@ import ItemDisplay from '../../components/ItemDisplay/ItemDisplay';
 import styles from './Index.module.css';
 import firebase from '../../config/firebase';
 
-export class Index extends Component {
+class Index extends Component {
   constructor(props) {
     super(props);
     
@@ -63,3 +63,5 @@ export class Index extends Component {
     return <div className={styles.indexContainer}>{items}</div>;
   }
 }
+
+export default Index

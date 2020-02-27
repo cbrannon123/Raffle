@@ -1,9 +1,8 @@
-import React, { Component, Children } from 'react';
+import React, { Component } from 'react';
 import firebase from '../../config/firebase';
 import { Link } from 'react-router-dom';
 import styles from './Show.module.css';
 import ItemImage from '../../components/ItemDisplay/ItemImage/ItemImage';
-import { storage } from 'firebase';
 
 class Show extends Component {
   constructor(props) {
@@ -70,22 +69,23 @@ class Show extends Component {
     return (
       <div className={styles.container}>
         <div className={styles.wrapper}>
-          <div style={{ display: 'flex' }}>{images}</div>
-          <h3>title</h3>
-          <h2>{this.state.item.title}</h2>
-          <br />
-          <h3>description</h3>
-          <p>{this.state.item.description}</p>
-          <br />
-          <h3>price</h3>
-          <p>{this.state.item.price}</p>
-          <br />
-          <h3>amount</h3>
-          <p>{this.state.item.available}</p>
-          <br />
-          <h3>time</h3>
-          <p>{this.state.item.time}</p>
-          {this.props.isAdmin == true ? (
+            <h3>title</h3>
+            <h2>{this.state.item.title}</h2>
+          <div className={styles.images}>{images}</div>
+          <div className={styles.info}>
+            <h3>description</h3>
+            <p>{this.state.item.description}</p>
+            <br />
+          </div>
+            <h3>price</h3>
+            <p>{this.state.item.price}</p>
+            <br />
+            <h3>amount</h3>
+            <p>{this.state.item.available}</p>
+            <br />
+            <h3>time</h3>
+            <p>{this.state.item.time}</p>
+          {this.props.isAdmin === true ? (
             <div>
               <Link to={`/edit/${this.state.key}`}>Edit</Link>
               <button onClick={this.delete.bind(this, this.state.key)}>
@@ -93,7 +93,7 @@ class Show extends Component {
               </button>
             </div>
           ) : (
-            <p>piss</p>
+            <p></p>
           )}
         </div>
       </div>
