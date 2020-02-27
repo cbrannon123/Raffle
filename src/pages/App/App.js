@@ -5,7 +5,7 @@ import AdminNav from '../../components/Nav/AdminNav/AdminNav';
 import UserNav from '../../components/Nav/UserNav/UserNav';
 import Index from '../Index/Index';
 import Show from '../Show/Show';
-import CreateItem from '../../components/CreateItem/CreateItem';
+import CreateItem from '../CreateItem/CreateItem';
 import EditItem from '../EditItem/EditItem';
 import styles from './App.module.css';
 

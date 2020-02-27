@@ -3,7 +3,7 @@ import firebase from '../../config/firebase';
 import { Link } from 'react-router-dom';
 import styles from './CreateItem.module.css';
 import FileUploader from 'react-firebase-file-uploader';
-import ItemImage from '../ItemDisplay/ItemImage/ItemImage';
+import ItemImage from '../../components/ItemDisplay/ItemImage/ItemImage';
 
 class CreateItem extends Component {
   constructor(props) {
