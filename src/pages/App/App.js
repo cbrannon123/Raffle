@@ -57,7 +57,6 @@ export class App extends Component {
             isSignedIn={this.state.isSignedIn}
           />
         )}
-        )}
         <Route exact path="/" render={props => <Index {...props} />} />
         <Route
           path={'/item/:id'}

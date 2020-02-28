@@ -9,9 +9,9 @@ const UserNav = props => {
     <header className={styles.header} data-testid="header">
       <nav className={styles.nav}>
         <div className={styles.logo}>
-          <span className={styles.img}>img</span>
+          
           <Link to={'/'} className={styles.companyName}>
-            Name
+            Compny Name
           </Link>
         </div>
         <div>
