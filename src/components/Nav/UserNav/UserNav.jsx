@@ -3,15 +3,17 @@ import StyledAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from '../../../config/firebase';
 import { Link } from 'react-router-dom';
 import styles from '../../../pages/App/App.module.css';
+import '../../Nav/firebaseui-styling.global.css';
 
 const UserNav = props => {
   return (
     <header className={styles.header} data-testid="header">
+      
       <nav className={styles.nav}>
         <div className={styles.logo}>
           
           <Link to={'/'} className={styles.companyName}>
-            Compny Name
+          Hamburgevons
           </Link>
         </div>
         <div>
@@ -23,7 +25,8 @@ const UserNav = props => {
                 </button>
               </li>
             ) : (
-              <StyledAuth
+                <StyledAuth
+                className={styles.firebaseUi}
                 uiConfig={props.uiConfig}
                 firebaseAuth={firebase.auth()}
               />

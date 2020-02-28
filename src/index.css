@@ -15,13 +15,13 @@ code {
     monospace;
 }
 
-.buttons {
+/* .buttons {
   border: 0 !important;
-  /* background-color: lightgray !important; */
+  background-color: lightgray !important;
   outline: none !important;
   padding: 0 !important;
 }
 
 .buttons:hover {
   color: white;
-}
+} */
