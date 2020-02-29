@@ -69,22 +69,24 @@ class Show extends Component {
     return (
       <div className={styles.container}>
         <div className={styles.wrapper}>
+          <div>
             <h3>title</h3>
             <h2>{this.state.item.title}</h2>
+          </div>
           <div className={styles.images}>{images}</div>
           <div className={styles.info}>
             <h3>description</h3>
             <p>{this.state.item.description}</p>
             <br />
           </div>
-            <h3>price</h3>
-            <p>{this.state.item.price}</p>
-            <br />
-            <h3>amount</h3>
-            <p>{this.state.item.available}</p>
-            <br />
-            <h3>time</h3>
-            <p>{this.state.item.time}</p>
+          <h3>price</h3>
+          <p>{this.state.item.price}</p>
+          <br />
+          <h3>amount</h3>
+          <p>{this.state.item.available}</p>
+          <br />
+          <h3>time</h3>
+          <p>{this.state.item.time}</p>
           {this.props.isAdmin === true ? (
             <div>
               <Link to={`/edit/${this.state.key}`}>Edit</Link>

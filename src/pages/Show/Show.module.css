@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  justify-content: center;
+  justify-items: center;
   flex-direction: row;
 }
 
@@ -22,7 +22,6 @@
 .info {
   text-align: left;
   display: flex;
- 
   justify-content: space-evenly;
   justify-self: center;
 }

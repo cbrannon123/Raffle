@@ -4,15 +4,15 @@
   flex-flow: column nowrap;
   text-align: center;
   border: 1px solid black;
-  height: 500px;
-  width: 350px;
-  margin-top: 10px;
+  height: 570px;
+  width: 400px;
+  margin: 20px 0;
   background-color: black;
-  border: 2px solid pink;
 }
 
 .showButton {
-  margin: auto;
+  font-size: 30px;
+  margin: 0 auto;
   text-align: center;
   margin-bottom: 30px;
   color: pink
