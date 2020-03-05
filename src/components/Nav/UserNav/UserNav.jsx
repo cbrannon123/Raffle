@@ -11,7 +11,6 @@ const UserNav = props => {
       
       <nav className={styles.nav}>
         <div className={styles.logo}>
-          
           <Link to={'/'} className={styles.companyName}>
           Hamburgevons
           </Link>
