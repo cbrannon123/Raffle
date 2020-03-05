@@ -95,7 +95,7 @@ class Show extends Component {
               </button>
             </div>
           ) : (
-            <p></p>
+            <></>
           )}
         </div>
       </div>
