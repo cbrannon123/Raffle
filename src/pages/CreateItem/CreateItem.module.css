@@ -1,0 +1,10 @@
+.container1 {
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
+}
+.wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}

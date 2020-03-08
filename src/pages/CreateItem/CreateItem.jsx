@@ -105,22 +105,9 @@ class CreateItem extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          width: '50vh',
-          marginTop: '100px',
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
+      <div className={styles.container1}>
         <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            textAlign: 'center',
-          }}
-        >
+          className={styles.wrapper} >
           <h1>Enter item</h1>
           <Link to="/">Go back</Link>
           <hr />
