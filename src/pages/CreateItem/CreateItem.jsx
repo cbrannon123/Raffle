@@ -14,7 +14,7 @@ class CreateItem extends Component {
       price: '',
       available: '',
       description: '',
-      time: '',
+      time: Date,
       filenames: [],
       downloadURLs: [],
       uploadProgress: 0,
@@ -142,7 +142,8 @@ class CreateItem extends Component {
             <label htmlFor="time">Select time</label>
             <input
               name="time"
-              type="text"
+              type="datetime-local"
+              required='true'
               placeholder="Enter a time here.."
               value={this.time}
               onChange={this.onChange}
