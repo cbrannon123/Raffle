@@ -17,6 +17,7 @@ class Show extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     const ref = firebase
       .firestore()
       .collection('items')
@@ -35,6 +36,7 @@ class Show extends Component {
       }
     });
   }
+
 
   delete(id) {
     const string = this.state.names.map(name => {
@@ -64,7 +66,7 @@ class Show extends Component {
 
   render() {
     const images = this.state.urls.map((url, i) => {
-      return <ItemImage key={i} url={url} />;
+      return <ItemImage onClick={this.handleShowDialog} key={i} url={url} />;
     });
     return (
       <div className={styles.container}>

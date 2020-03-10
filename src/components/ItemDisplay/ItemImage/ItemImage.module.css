@@ -8,3 +8,12 @@
   height: 250px;
   width: 250px;
 }
+
+.dialog > img {
+  box-shadow: 0 8px 6px -6px black;
+  position: static;
+  left: 12%;
+  top: 10%;
+  height: 35em;
+  width: 35em;
+}
