@@ -92,7 +92,7 @@ class CreateItem extends Component {
           price: '',
           available: '',
           description: '',
-          time: '',
+          time: Date,
           downloadURL: [],
           filenames: [],
         });
@@ -106,8 +106,7 @@ class CreateItem extends Component {
   render() {
     return (
       <div className={styles.container1}>
-        <div
-          className={styles.wrapper} >
+        <div className={styles.wrapper}>
           <h1>Enter item</h1>
           <Link to="/">Go back</Link>
           <hr />
@@ -142,10 +141,10 @@ class CreateItem extends Component {
             <label htmlFor="time">Select time</label>
             <input
               name="time"
-              type="datetime-local"
-              required='true'
+              type="date"
+              required="true"
               placeholder="Enter a time here.."
-              value={this.time}
+              value={ this.state.time}
               onChange={this.onChange}
             />
             <br />
