@@ -161,7 +161,7 @@ class CreateItem extends Component {
           <p>Progress: {this.state.uploadProgress}</p>
           <p>filenames: {this.state.filenames.join(', ')}</p>
           <div style={{ display: 'flex', alignContent: 'center' }}>
-            <div style={{ display: 'flex', justifySelf: 'center' }}>
+            <div style={{ display: 'flex',flexFlow: 'column', justifySelf: 'center' }}>
               {this.state.downloadURLs.map((downloadURL, i) => {
                 return <ItemImage key={i} url={downloadURL} />;
               })}

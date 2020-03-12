@@ -5,17 +5,17 @@ class ItemInfo extends Component {
   constructor(props) {
     super(props);
     var today = new Date(),
-    current = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+      current = `${today.getFullYear()} 
+        -
+        ${today.getMonth() + 1}
+        -
+        ${today.getDate()}`;
     this.state = {
-      currentDate: current
-    }
+      currentDate: current,
+    };
   }
-  
 
   render() {
-   
-  
-
     return (
       <div className={styles.itemInfoContainer}>
         <div className={styles.itemName}>
@@ -32,7 +32,11 @@ class ItemInfo extends Component {
           </div>
           <div className={styles.data}>
             <h5>Ends</h5>
-            {this.props.time < this.state.currentDate ? <p>not</p> : <p>{this.props.time}</p>}
+            {this.props.time < this.state.currentDate ? (
+              <p>not</p>
+            ) : (
+              <p>{this.props.time}</p>
+            )}
           </div>
         </div>
       </div>
