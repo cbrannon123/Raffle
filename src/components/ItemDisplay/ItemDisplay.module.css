@@ -16,5 +16,12 @@
   text-align: center;
   margin-bottom: 30px;
   color: pink
- 
+}
+
+.cover {
+  position: absolute;
+  margin: -120px 75px 0;
+  height: 252px;
+  width: 250px;
+  background: rgba(0, 0, 0, 0);
 }

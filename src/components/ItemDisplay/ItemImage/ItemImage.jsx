@@ -8,6 +8,7 @@ class ItemImage extends Component {
   }
 
   handleShowDialog = () => {
+    window.scrollTo(0, 80);
     this.setState({ isOpen: !this.state.isOpen });
     console.log('cliked');
   };
@@ -21,9 +22,9 @@ class ItemImage extends Component {
           alt={'no image'}
         />
         {this.state.isOpen && (
+          
           <dialog
             className={styles.dialog}
-            style={{ position: 'absolute' }}
             open
             onClick={this.handleShowDialog}
           >

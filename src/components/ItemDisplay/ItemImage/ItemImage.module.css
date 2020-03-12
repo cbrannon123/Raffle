@@ -12,11 +12,19 @@
 
 .dialog {
   margin-top: -130px;
+  position: 'absolute';
+  padding: 0 300px;
+  border: 0px;
+  /* background: rgb(69, 65, 65); */
+  background: linear-gradient(
+    180deg,
+    rgba(57, 55, 55, 0.598) 30%,
+    rgba(16, 15, 15, 0.735) 100%
+  );
 }
 
 .dialog > img {
   cursor: pointer;
-  box-shadow: 0 8px 6px -6px black;
   position: static;
   left: 12%;
   top: 10%;
