@@ -13,6 +13,11 @@
   height: 120px;
 }
 
+button {
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+}
+
 .nav {
   display: flex;
   justify-content: space-between;
@@ -54,6 +59,12 @@
   align-items: center;
 }
 
+.linksContainer :first-child{
+  text-decoration: none;
+  color: white;
+  font-weight: 700;
+}
+
 .linksContainer > li  {
   padding: 10px;
   text-decoration: none;
@@ -91,5 +102,10 @@
     text-decoration: none;
     color: white;
     font-weight: 700;
+  }
+
+  button {
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
   }
 }
