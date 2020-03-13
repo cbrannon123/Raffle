@@ -66,7 +66,7 @@ class Show extends Component {
 
   render() {
     const images = this.state.urls.map((url, i) => {
-      return <ItemImage onClick={this.handleShowDialog} key={i} url={url} />;
+      return <ItemImage isAdmin={this.props.isAdmin} onClick={this.handleShowDialog} key={i} url={url} />;
     });
     return (
       <div className={styles.container}>

@@ -93,7 +93,7 @@ class CreateItem extends Component {
           available: '',
           description: '',
           time: Date,
-          downloadURL: [],
+          downloadURLs: [],
           filenames: [],
         });
         this.props.history.push('/');

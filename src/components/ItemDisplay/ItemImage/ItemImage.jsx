@@ -21,6 +21,7 @@ class ItemImage extends Component {
           src={this.props.url}
           alt={'no image'}
         />
+       
         {this.state.isOpen && (
           
           <dialog

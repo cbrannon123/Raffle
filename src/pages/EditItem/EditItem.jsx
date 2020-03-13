@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import firebase from '../../config/firebase';
 import { Link } from 'react-router-dom';
+import ItemImage from '../../components/ItemDisplay/ItemImage/ItemImage';
 
 class EditItem extends Component {
   constructor(props) {
@@ -13,6 +14,8 @@ class EditItem extends Component {
       available: '',
       description: '',
       time: '',
+      downloadURLs: [],
+      filenames: [],
     };
   }
 
@@ -22,7 +25,6 @@ class EditItem extends Component {
       .collection('items')
       .doc(this.props.match.params.id);
     ref.get().then(doc => {
-      console.log('hit from edit');
       if (doc.exists) {
         const item = doc.data();
         this.setState({
@@ -32,6 +34,9 @@ class EditItem extends Component {
           available: item.available,
           description: item.description,
           time: item.time,
+          downloadURLs: item.downloadURLs,
+          filenames: item.filenames,
+          // names: doc.data().filenames
         });
         console.log(this.state.key);
       } else {
@@ -50,7 +55,15 @@ class EditItem extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    const { title, price, available, description, time } = this.state;
+    const {
+      title,
+      price,
+      available,
+      description,
+      time,
+      downloadURLs,
+      filenames,
+    } = this.state;
 
     const updateRef = firebase
       .firestore()
@@ -63,6 +76,8 @@ class EditItem extends Component {
         available,
         description,
         time,
+        downloadURLs,
+        filenames,
       })
       .then(docRef => {
         this.setState({
@@ -71,6 +86,8 @@ class EditItem extends Component {
           available: '',
           description: '',
           time: '',
+          downloadURLs: [],
+          filenames: [],
         });
         this.props.history.push(`/item/${this.props.match.params.id}`);
       })
@@ -80,6 +97,9 @@ class EditItem extends Component {
   };
 
   render() {
+    const images = this.state.downloadURLs.map((url, i) => {
+      return <ItemImage key={i} url={url} />;
+    });
     return (
       <div
         style={{
@@ -133,7 +153,7 @@ class EditItem extends Component {
             <label htmlFor="time">Select time</label>
             <input
               name="time"
-              type="text"
+              type="date"
               placeholder="Enter a time here.."
               value={this.state.time}
               onChange={this.onChange}
@@ -149,13 +169,7 @@ class EditItem extends Component {
             <br />
             <input type="submit" value="submit item" />
           </form>
-          {/* <br />
-          <label>Upload img</label>
-          <input
-            type="file"
-            placeholder="Enter a discription here.."
-            onChange={this.handleImg}
-          /> */}
+          {images}
         </div>
       </div>
     );
