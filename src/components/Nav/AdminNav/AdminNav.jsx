@@ -16,7 +16,7 @@ const AdminNav = props => {
         <div>
           <ul className={styles.linksContainer}>
             <li>
-              <Link to={'/create'}>CreateItem</Link>
+              <Link to={'/create'}>Create Item</Link>
             </li>
             {props.isSignedIn ? (
               <li>
@@ -25,7 +25,8 @@ const AdminNav = props => {
                 </button>
               </li>
             ) : (
-              <StyledAuth className={styles.firebaseUi}
+              <StyledAuth
+                className={styles.firebaseUi}
                 uiConfig={props.uiConfig}
                 firebaseAuth={firebase.auth()}
               />

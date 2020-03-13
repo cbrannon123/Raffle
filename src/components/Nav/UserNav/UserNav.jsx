@@ -8,11 +8,10 @@ import '../../Nav/firebaseui-styling.global.css';
 const UserNav = props => {
   return (
     <header className={styles.header} data-testid="header">
-      
       <nav className={styles.nav}>
         <div className={styles.logo}>
           <Link to={'/'} className={styles.companyName}>
-          Hamburgevons
+            Hamburgevons
           </Link>
         </div>
         <div>
@@ -24,7 +23,7 @@ const UserNav = props => {
                 </button>
               </li>
             ) : (
-                <StyledAuth
+              <StyledAuth
                 className={styles.firebaseUi}
                 uiConfig={props.uiConfig}
                 firebaseAuth={firebase.auth()}

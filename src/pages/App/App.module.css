@@ -18,7 +18,7 @@
   justify-content: space-between;
 }
 
-.img {
+/* .img {
   text-align: center;
   border: 1px solid white;
   border-radius: 50%;
@@ -28,7 +28,7 @@
   font-size: 40px;
   margin-left: -60px;
   margin-right: 40px;
-}
+} */
 
 .companyName {
   font-family: 'Rakkas';
@@ -64,4 +64,32 @@
 .linksContainer > li *:hover {
   text-decoration: none;
   color: white;
+}
+
+@media only screen and (max-width: 600px) {
+  .header {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    
+  }
+
+  .nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .linksContainer {
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+    text-decoration: none;
+  }
+
+  .linksContainer :first-child{
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+  }
 }

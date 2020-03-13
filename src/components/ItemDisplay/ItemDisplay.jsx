@@ -27,7 +27,7 @@ class ItemDisplay extends Component {
             view
           </Link>
         ) : (
-          <p>Login to view</p>
+          <p>Log in to view</p>
         )}
       </div>
     );
