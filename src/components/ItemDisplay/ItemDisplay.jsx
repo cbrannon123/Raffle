@@ -13,8 +13,9 @@ class ItemDisplay extends Component {
   render() {
     return (
       <div className={styles.displayContainer}>
-        <span className={ styles.cover}></span>
-        <ItemImage url={this.props.url[0]} />
+        <span className={styles.cover}></span>
+        {this.props.url.length ? <ItemImage url={this.props.url[0]} /> : <ItemImage url={this.props.url} />}
+        {/* <ItemImage url={this.props.url[0]} /> */}
         <ItemInfo
           title={this.props.title}
           price={this.props.price}
