@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Entries from '../../components/Entries/Entries';
 import firebase from '../../config/firebase';
 import { Link } from 'react-router-dom';
 import styles from './Show.module.css';
@@ -10,8 +11,8 @@ class Show extends Component {
     this.unmount = null;
     this.state = {
       item: {},
-      urls: [],
-      names: [],
+      downloadURLs: [],
+      filenames: [],
       key: '',
     };
   }
@@ -27,8 +28,8 @@ class Show extends Component {
         this.setState({
           item: doc.data(),
           key: doc.id,
-          urls: doc.data().downloadURLs,
-          names: doc.data().filenames,
+          downloadURLs: doc.data().downloadURLs,
+          filenames: doc.data().filenames,
           isLoading: false,
         });
       } else {
@@ -37,9 +38,8 @@ class Show extends Component {
     });
   }
 
-
   delete(id) {
-    const string = this.state.names.map(name => {
+    const string = this.state.filenames.map(name => {
       return name;
     });
     var ref1 = () =>
@@ -65,8 +65,15 @@ class Show extends Component {
   }
 
   render() {
-    const images = this.state.urls.map((url, i) => {
-      return <ItemImage isAdmin={this.props.isAdmin} onClick={this.handleShowDialog} key={i} url={url} />;
+    const images = this.state.downloadURLs.map((url, i) => {
+      return (
+        <ItemImage
+          isAdmin={this.props.isAdmin}
+          onClick={this.handleShowDialog}
+          key={i}
+          url={url}
+        />
+      );
     });
     return (
       <div className={styles.container}>
@@ -76,18 +83,27 @@ class Show extends Component {
             <h2>{this.state.item.title}</h2>
           </div>
           <div className={styles.images}>{images}</div>
-          <div className={styles.info}>
-            <h3>description</h3>
-            <p>{this.state.item.description}</p>
-            <br />
-          <h3>price</h3>
-          <p>{this.state.item.price}</p>
-          <br />
-          <h3>amount</h3>
-          <p>{this.state.item.available}</p>
-          <br />
-          <h3>time</h3>
-          <p>{this.state.item.time}</p>
+          <div className={styles.infoContainer}>
+            <div className={styles.info}>
+              <h3>description</h3>
+              <p>{this.state.item.description}</p>
+              <br />
+              <div className={ styles.asideWrapper }>
+                <div className={styles.asideHeader}>
+                  <h3>price</h3>
+                  <br />
+                  <h3>amount</h3>
+                  <br />
+                  <h3>time</h3>
+                </div>
+                <div className={styles.asideContent}>
+                  <p>{this.state.item.price}</p>
+                  <p>{this.state.item.available}</p>
+                  <p>{this.state.item.time}</p>
+                </div>
+              </div>
+            </div>
+            <Entries />
           </div>
           {this.props.isAdmin === true ? (
             <div>
