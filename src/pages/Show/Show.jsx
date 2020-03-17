@@ -14,6 +14,7 @@ class Show extends Component {
       downloadURLs: [],
       filenames: [],
       key: '',
+      entries: [],
     };
   }
 
@@ -37,6 +38,8 @@ class Show extends Component {
       }
     });
   }
+
+  
 
   delete(id) {
     const string = this.state.filenames.map(name => {
@@ -103,7 +106,7 @@ class Show extends Component {
                 </div>
               </div>
             </div>
-            <Entries />
+            <Entries tickets={this.state.item.available} />
           </div>
           {this.props.isAdmin === true ? (
             <div>

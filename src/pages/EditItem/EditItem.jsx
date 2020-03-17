@@ -16,8 +16,11 @@ class EditItem extends Component {
       time: '',
       downloadURLs: [],
       filenames: [],
+      
     };
   }
+
+  //TODO - Create edit image function
 
   componentDidMount() {
     const ref = firebase
@@ -44,6 +47,7 @@ class EditItem extends Component {
       }
     });
   }
+
 
   onChange = e => {
     const state = this.state;
