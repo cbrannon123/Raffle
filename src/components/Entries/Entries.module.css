@@ -5,7 +5,7 @@
 }
 
 .names {
-  border: 1px solid black;
+  position: absolute;
 }
 
 .names > ol > li {
@@ -15,6 +15,7 @@
 }
 
 .buttonWrapper {
+  margin-top: 100%;
   display: flex;
   justify-content: flex-end;
 

@@ -13,18 +13,28 @@ class Entries extends Component {
     if (this.state.names.length <= this.props.tickets - 1) {
       this.setState({
         name: this.state.names.push('name'),
-      })
-      } else {
-        return
-      }
-      
+      });
+    } else {
+      return;
+    }
+  };
+
+  handleDelete(id) {
+    this.setState(prevState => ({
+      names: prevState.entry.filter(el => el != id),
+    }));
   };
 
   render() {
     console.log(this.state.names);
 
     let entry = this.state.names.map((name, i) => {
-      return <li key={i}>{name}</li>;
+      return (
+        <li key={i}>
+          {name}
+          <button onClick={this.handleDelete.bind(this,i)}>X</button>
+        </li>
+      );
     });
 
     return (

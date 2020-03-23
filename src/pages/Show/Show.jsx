@@ -39,8 +39,6 @@ class Show extends Component {
     });
   }
 
-  
-
   delete(id) {
     const string = this.state.filenames.map(name => {
       return name;
