@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ReactDom from 'react-dom';
 import firebase from '../../config/firebase';
 import { Link } from 'react-router-dom';
+import styles from './EditItem.module.css';
 import ItemImage from '../../components/ItemDisplay/ItemImage/ItemImage';
 
 class EditItem extends Component {
@@ -106,21 +106,8 @@ class EditItem extends Component {
     });
     return (
       <div
-        style={{
-          width: '50vh',
-          marginTop: '100px',
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            textAlign: 'center',
-          }}
-        >
+        className={styles.container}>
+        <div className={styles.formWrap} >
           <h1>
             Edit item <p>{this.title}</p>
           </h1>
