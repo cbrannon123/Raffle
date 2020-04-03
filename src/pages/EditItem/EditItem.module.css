@@ -1,13 +1,29 @@
 .container {
-  width: 50vh;
-  margin-top: 100px;
+  border: 1px solid black;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  margin-top: 10%;
 }
 
-.formWrap {
+.infoWrap {
+  border: 1px solid black;
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  text-align: center;
+  margin: 30px;
+}
+
+.imgContainer {
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 20px 20% 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+textarea {
+  width: 400px;
+  height: 400px;
 }

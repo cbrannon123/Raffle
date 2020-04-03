@@ -16,7 +16,6 @@ class EditItem extends Component {
       time: '',
       downloadURLs: [],
       filenames: [],
-      
     };
   }
 
@@ -47,7 +46,6 @@ class EditItem extends Component {
       }
     });
   }
-
 
   onChange = e => {
     const state = this.state;
@@ -105,9 +103,8 @@ class EditItem extends Component {
       return <ItemImage key={i} url={url} />;
     });
     return (
-      <div
-        className={styles.container}>
-        <div className={styles.formWrap} >
+      <div className={styles.container}>
+        <div className={styles.infoWrap}>
           <h1>
             Edit item <p>{this.title}</p>
           </h1>
@@ -160,8 +157,8 @@ class EditItem extends Component {
             <br />
             <input type="submit" value="submit item" />
           </form>
-          {images}
         </div>
+        <div className={styles.imgContainer}>{images}</div>
       </div>
     );
   }
