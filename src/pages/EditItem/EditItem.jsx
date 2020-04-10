@@ -50,7 +50,6 @@ class EditItem extends Component {
   onChange = e => {
     const state = this.state;
     state[e.target.name] = e.target.value;
-    //could cause error
     this.setState({ item: state });
   };
 
