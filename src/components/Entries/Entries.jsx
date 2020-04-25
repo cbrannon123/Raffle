@@ -26,7 +26,7 @@ class Entries extends Component {
   };
 
   render() {
-    console.log(this.state.names);
+    //console.log(this.state.names);
 
     let entry = this.state.names.map((name, i) => {
       return (
